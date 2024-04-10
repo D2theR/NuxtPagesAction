@@ -33,7 +33,7 @@ inputs:
     required: false
     default: 'none'
   cwd:
-    description: 'Your custom domain'
+    description: 'Working directory'
     required: false
     default: false
   useyarn:
