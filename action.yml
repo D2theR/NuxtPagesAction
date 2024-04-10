@@ -32,16 +32,20 @@ inputs:
     description: 'Your custom domain'
     required: false
     default: 'none'
+  cwd:
+    description: 'Your custom domain'
+    required: false
+    default: false
   useyarn:
     description: 'Use yarn to build'
     required: false
     default: false
 runs:
   using: "composite"
+  working-directory: ${{ cwd }}
   steps:
       - name: Build Nuxt
         run: |
-              if [ true == "${{ inputs.preruncmd }}" ]; then ${inputs.preruncmd}; fi
               if [ true ==  ${{ inputs.useyarn }} ]; then yarn install --frozen-lockfile; else npm ci; fi
               if [ true ==  ${{ inputs.useyarn }} ]; then yarn generate; else npm run generate; fi
               cd dist
